@@ -2,6 +2,7 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import authRoute from "./routes/auth.js";
 
 dotenv.config();
 
@@ -14,6 +15,10 @@ mongoose
   })
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
+
+app.use(express.json());
+
+app.use("/api/auth", authRoute);
 
 app.listen("8800", () => {
   console.log("Backend is running!");
