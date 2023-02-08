@@ -3,6 +3,7 @@ const app = express();
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
+import userRoute from "./routes/users.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ mongoose
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 app.listen("8800", () => {
   console.log("Backend is running!");
