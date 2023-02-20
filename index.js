@@ -7,6 +7,8 @@ import userRoute from "./routes/users.js";
 import postRoute from "./routes/posts.js";
 import categoryRoute from "./routes/categories.js";
 import multer from "multer";
+import path from "path";
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -21,6 +23,10 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.json());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use("/images", express.static(path.join(__dirname,"images")));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
